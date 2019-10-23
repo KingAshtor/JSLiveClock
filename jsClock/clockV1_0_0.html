@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body onload="clock(); setInterval('clock()', 1000 )">
+  <br>
+  <span id="output"></span>
+  <span id="output2"></span>
+  <span id="output3"></span>
+  <form>
+    <input type="time" id="reminderInput" name="reminderInput" />
+    <input type="button" onClick="setReminder()" id="reminderSubmit" Value="Submit" />
+    <input type="button" onClick="swapMode()" id="modeswitch" Value="Mode" />
+  </form>
+
+  <script src="clockScriptV1_0_0.js"></script>
+</body>
+
+
+</html>
