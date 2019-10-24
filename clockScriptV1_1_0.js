@@ -1,7 +1,11 @@
-//V1.0.0
+//V1.1.0
 let reminderTime = 'No reminder'
 let reminderDesc = 'No reminder'
 let mode = 1
+let hrDisplay = ''
+let minDisplay = ''
+let secDisplay = ''
+
 
 function setReminder() {
   reminderTime = document.getElementById('reminderInput').value
@@ -12,14 +16,14 @@ function setReminder() {
 //function used to change modes.
 function swapMode() {
   mode = (parseInt(mode) + 1) // adds one to the mode counter
-  if (mode >= 3) { //if the mode counter reaches 3 or more it wil reset to 1
-    mode = 1
-  }
   console.log('mode is ' + mode); //outputs mode to console
   hrDisplay = 0 //sets hour display value to zero
   secDisplay = 0 //sets seconds display value to zero
   minDisplay = 0 //sets minutes display value to zero
-  document.getElementById('output3').innerHTML = '' //sets AM/PM to blank
+  if (mode >= 4) { //if the mode counter reaches 4 or more it wil reset to 1
+    mode = 1
+    console.log('mode is ' + mode); //outputs mode to console
+  }
 }
 
 
@@ -31,8 +35,10 @@ function clock() {
   let min = currentTime.getMinutes();
   let sec = currentTime.getSeconds();
 
-//Runs when in mode one. It displays regular clock
-  if (mode == 1) {
+  
+
+  //Runs when in mode one or two it runs main clock.
+  if (mode <= 2) {
 
     //if seconds are less than 10 add an aditional zero for good looks baby!
     if (sec < 10) {
@@ -48,18 +54,32 @@ function clock() {
       minDisplay = min
     }
 
-//If hour is greater than 13 than subtract 12. This makes it not millitary time. It also displays AM and PM based on hr>13
+    //If hour is greater than 13 than subtract 12. This makes it not millitary time. It also displays AM and PM based on hr>13
     if (hr < 13) {
       hrDisplay = hr
-      document.getElementById('output3').innerHTML = 'AM'
+
+      if (mode == 2) { //If in mode two will show MT for miliraty
+        document.getElementById('output3').innerHTML = 'MT'
+      } else {
+        document.getElementById('output3').innerHTML = 'AM'
+      }
+
     } else {
-      hrDisplay = (hr - 12)
-      document.getElementById('output3').innerHTML = 'PM'
+      if (mode == 2) {
+        document.getElementById('output3').innerHTML = 'MT'
+        hrDisplay = hr
+      } else {
+        document.getElementById('output3').innerHTML = 'PM'
+        hrDisplay = (hr - 12)
+      }
     }
   }
 
-//runs while in mode two. Turns the standard clock into a stopwatch
-  if (mode == 2) {
+  //runs while in mode three. Turns the standard clock into a stopwatch
+  if (mode == 3) {
+
+    document.getElementById('output3').innerHTML = 'SW' //sets AM/PM to SW for stopwatch
+
     secDisplay = (parseInt(secDisplay) + 1) //adds one to the second
 
     if (secDisplay >= 60) { //checks to see if it is greator than or equal to 60 seconds
@@ -78,12 +98,12 @@ function clock() {
   console.log(totalTime); //logs total time
 
 
-//used to check if the current time is the alert time
+  //used to check if the current time is the alert time
   if (reminderTime == (hr + ':' + min)) {
     console.log('ALERT') //logs alert used for testing
     window.alert(reminderTime + " " + reminderDesc) //used to output alert window
   }
   reminderDesc = document.getElementById('desc').value
-  document.getElementById('output4').innerHTML = reminderTime  //makes output4 in html read the time of reminder
+  document.getElementById('output4').innerHTML = reminderTime //makes output4 in html read the time of reminder
   document.getElementById('output5').innerHTML = reminderDesc //makes output5 in html the reminder description
 }

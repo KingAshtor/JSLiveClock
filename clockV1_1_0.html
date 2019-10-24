@@ -1,0 +1,68 @@
+<!-- V1.0.0 -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>OWA CLock</title>
+</head>
+
+<style>
+  .content {
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid;
+    text-align: center;
+    background: gray
+  }
+
+  .clockface {
+    border: 1px solid;
+    padding: 20px;
+    width: 300px;
+    font-size: 55px;
+    text-align: center;
+    margin: auto;
+    background: lightgreen;
+  }
+
+  .reminderTime {
+    border: 1px solid;
+    text-align: center;
+    margin: auto;
+  }
+
+  .reminderDesc {
+    border: 1px solid;
+    margin: auto;
+    word-wrap: break-word;
+  }
+</style>
+
+<body onload="clock(); setInterval('clock()', 1000 )">
+  <div class="content">
+    <br>
+    <span id="output"></span>
+
+    <div class="clockface">
+      <span id="output2"></span>
+      <span id="output3"></span>
+    </div>
+    <br>
+    <form>
+      <input type="time" id="reminderInput" name="reminderInput" />
+      <input type="text" id='desc' name="inputbox" value="Reminder Description">
+      <input type="button" onClick="setReminder()" id="reminderSubmit" Value="Submit" />
+      <input type="button" onClick="swapMode()" id="modeswitch" Value="Mode" />
+    </form>
+
+    <br>
+    <div class="reminderTime"> <span id="output4"></span> </div>
+    <div class="reminderDesc"> <span id="output5"></span> </div>
+
+  </div>
+  <script src="clockScriptV1_1_0.js"></script>
+</body>
+
+
+</html>
