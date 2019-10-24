@@ -20,6 +20,7 @@ function swapMode() {
   secDisplay = 0 //sets seconds display value to zero
   minDisplay = 0 //sets minutes display value to zero
   document.getElementById('output3').innerHTML = '' //sets AM/PM to blank
+
 }
 
 
@@ -31,7 +32,7 @@ function clock() {
   let min = currentTime.getMinutes();
   let sec = currentTime.getSeconds();
 
-//Runs when in mode one. It displays regular clock
+  //Runs when in mode one. It displays regular clock
   if (mode == 1) {
 
     //if seconds are less than 10 add an aditional zero for good looks baby!
@@ -48,7 +49,7 @@ function clock() {
       minDisplay = min
     }
 
-//If hour is greater than 13 than subtract 12. This makes it not millitary time. It also displays AM and PM based on hr>13
+    //If hour is greater than 13 than subtract 12. This makes it not millitary time. It also displays AM and PM based on hr>13
     if (hr < 13) {
       hrDisplay = hr
       document.getElementById('output3').innerHTML = 'AM'
@@ -58,8 +59,11 @@ function clock() {
     }
   }
 
-//runs while in mode two. Turns the standard clock into a stopwatch
+  //runs while in mode two. Turns the standard clock into a stopwatch
   if (mode == 2) {
+
+
+
     secDisplay = (parseInt(secDisplay) + 1) //adds one to the second
 
     if (secDisplay >= 60) { //checks to see if it is greator than or equal to 60 seconds
@@ -78,12 +82,12 @@ function clock() {
   console.log(totalTime); //logs total time
 
 
-//used to check if the current time is the alert time
+  //used to check if the current time is the alert time
   if (reminderTime == (hr + ':' + min)) {
     console.log('ALERT') //logs alert used for testing
     window.alert(reminderTime + " " + reminderDesc) //used to output alert window
   }
   reminderDesc = document.getElementById('desc').value
-  document.getElementById('output4').innerHTML = reminderTime  //makes output4 in html read the time of reminder
+  document.getElementById('output4').innerHTML = reminderTime //makes output4 in html read the time of reminder
   document.getElementById('output5').innerHTML = reminderDesc //makes output5 in html the reminder description
 }
